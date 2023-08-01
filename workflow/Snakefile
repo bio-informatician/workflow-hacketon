@@ -2,3 +2,20 @@
 # Please follow the best practices: 
 # https://snakemake.readthedocs.io/en/stable/snakefiles/best_practices.html,
 # in particular regarding the standardized folder structure mentioned there. 
+
+FASTA_PREFIXES = [
+    "GCA_0090
+]
+
+rule all:
+    input:
+        expand(
+            [   "results/annotate/{fasta_prefix}/{fasta_prefix}_proteins.faa",
+                "results/annotate/{fasta_prefix}/{fasta_prefix}_mmseq2.tsv",
+                "results/annotate/{fasta_prefix}/{fasta_prefix}_genes.tsv",
+                "results/annotate/{fasta_prefix}/{fasta_prefix}_taxonomy.tsv",
+                directory("results/annotate/{fasta_prefix}/mmseq2"),
+            ],
+            fasta_prefix = FASTA_PREFIXES
+        )   
+     
